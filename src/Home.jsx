@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 export default function Home ()
 {
-    const likes = 80 
-    const handleClick = (likes) => {
-        likes = likes + 1 
-        console.log(" now React i liked " + likes + " M times") ; 
+    const [likes, setLikes] = useState(80)  
+    const handleClick = () => {
+         
+        setLikes(likes +1) ; 
+       
     }
     return (
         <div className="mt-4">
@@ -17,7 +20,7 @@ export default function Home ()
 
             <div className="justify-center flex mt-4">
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-full font-semibold"
-                    onClick={ () => handleClick(likes)}
+                    onClick={handleClick}
                 >
                     Click me 
                 </button>
