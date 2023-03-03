@@ -14,7 +14,13 @@ export default function Home ()
         {title : 'Welcome Article', body : 'Lorem ipsum ...', author: 'Me', id : 1}, 
         {title : 'Welcome 2  Article', body : 'Lorem ipsum ...', author: 'Me', id : 2}, 
         {title : 'Welcome 3 Article', body : 'Lorem ipsum ...', author: 'Me', id : 3}, 
-    ])
+        {title : 'Welcome 4 Article', body : 'Lorem ipsum ...', author: 'Aude', id : 4}, 
+    ]) 
+
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter(blog => blog.id !== id) ; 
+        setBlogs(newBlogs) ; 
+    }
     return (
         <div className="mt-4">
             <h1 className="text-center text-2xl">
@@ -33,7 +39,8 @@ export default function Home ()
                 </button>
             </div>
 
-            <BlogList blogs={blogs} title='All Articles' />
+            <BlogList blogs={blogs} title='All Articles' handleDelete={handleDelete} />
+            <BlogList blogs={blogs.filter((blog) => blog.author === 'Me')} title='My Articles' />
         </div>
     )
 }
