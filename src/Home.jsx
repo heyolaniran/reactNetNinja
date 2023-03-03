@@ -22,9 +22,11 @@ export default function Home ()
         setBlogs(newBlogs) ; 
     }
 
+    const [name, setName] = useState('Abdias') ; 
+
     useEffect(() => {
-        console.log(blogs)
-    }) ; 
+        console.log(name)
+    }, [name]) ; 
     
     return (
         <div className="mt-4">
@@ -38,9 +40,9 @@ export default function Home ()
 
             <div className="justify-center flex mt-4">
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-full font-semibold"
-                    onClick={handleClick}
+                    onClick={() => setName('Olaniran')}
                 >
-                    Click me 
+                    Change the name 
                 </button>
             </div>
 
