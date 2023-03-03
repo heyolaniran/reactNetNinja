@@ -10,23 +10,25 @@ export default function Home ()
        
     }
 
-    const [blogs, setBlogs] = useState([
-        {title : 'Welcome Article', body : 'Lorem ipsum ...', author: 'Me', id : 1}, 
-        {title : 'Welcome 2  Article', body : 'Lorem ipsum ...', author: 'Me', id : 2}, 
-        {title : 'Welcome 3 Article', body : 'Lorem ipsum ...', author: 'Me', id : 3}, 
-        {title : 'Welcome 4 Article', body : 'Lorem ipsum ...', author: 'Aude', id : 4}, 
-    ]) 
+    const [isPending, setIsPending] = useState(true) ; 
 
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id) ; 
-        setBlogs(newBlogs) ; 
-    }
+    const [blogs, setBlogs] = useState(null) 
+
+
 
     const [name, setName] = useState('Abdias') ; 
 
     useEffect(() => {
-        console.log(name)
-    }, [name]) ; 
+        setTimeout(() => {
+            fetch('  http://localhost:8000/blogs').then((res) =>{
+            return res.json()
+        })
+        .then((data) => {
+            setBlogs(data)
+            setIsPending(false)
+        })
+        }, 1000);
+    }, []) ; 
     
     return (
         <div className="mt-4">
@@ -40,14 +42,15 @@ export default function Home ()
 
             <div className="justify-center flex mt-4">
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-full font-semibold"
-                    onClick={() => setName('Olaniran')}
+                    onClick={handleClick}
                 >
-                    Change the name 
+                    Click Here  
                 </button>
             </div>
 
-            <BlogList blogs={blogs} title='All Articles' handleDelete={handleDelete} />
-            <BlogList blogs={blogs.filter((blog) => blog.author === 'Me')} title='My Articles' />
+            {isPending && <div>Loading data ....</div>}
+            {blogs && <BlogList blogs={blogs} title='All Articles' />}
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.author === 'Me')} title='My Articles' />}
         </div>
     )
 }

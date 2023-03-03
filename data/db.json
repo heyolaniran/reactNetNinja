@@ -1,0 +1,36 @@
+{
+    "blogs" :   [
+        {
+            "title" : "my first blog", 
+            "body" : "Lorem ipsum ...", 
+            "author": "Me", 
+            "id" : 1
+        }, 
+        {
+            "title" : "my second blog", 
+            "body" : " lorem ipsum 2", 
+            "author" : "Me", 
+            "id" : 2
+        }, 
+        {
+            "title" : "my third blog", 
+            "body" : " lorem ipsum 3", 
+            "author" : "Abdias", 
+            "id" : 3
+        }, 
+        {
+            "title" : "my fourth blog", 
+            "body" : " lorem ipsum 4", 
+            "author" : "Felicien", 
+            "id" : 4
+        }, 
+        {
+            "title" : "my fifth blog", 
+            "body" : " lorem ipsum 5", 
+            "author" : "Olaniran", 
+            "id" : 5
+        }
+            
+        
+    ]
+}

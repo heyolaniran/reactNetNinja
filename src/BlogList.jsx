@@ -1,4 +1,4 @@
-export default function BlogList ({blogs, title, handleDelete}) {
+export default function BlogList ({blogs, title}) {
 
 
     return (
@@ -12,9 +12,7 @@ export default function BlogList ({blogs, title, handleDelete}) {
                             <h1 className="text-2xl font-semibold text-blue-600">{blog.title}</h1>
                             <span className="text-md"> By {blog.author}</span>
                             <div className="mt-4 justify-end flex">
-                                <button className="rounded-lg bg-blue-600 text-white px-4 py-2" onClick={() => handleDelete(blog.id)}>
-                                 Delete
-                                </button>
+
                             </div>
                         </div>
                     ))
