@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
+import useFetch from "./useFetch";
 
 export default function Home ()
 {
@@ -10,35 +11,13 @@ export default function Home ()
        
     }
 
-    const [isPending, setIsPending] = useState(true) ; 
-    const [error,setErrors] = useState(null)
-    const [blogs, setBlogs] = useState(null) 
 
 
 
     const [name, setName] = useState('Abdias') ; 
 
-    useEffect(() => {
-        setTimeout(() => {
-            fetch('  http://localhost:8000/blogs').then((res) =>{
-                if(!res.ok)
-                {
-                    throw Error("Something went wrong") ; 
-                }
-            return res.json()
-        })
-        .then((data) => {
-            setBlogs(data)
-            setIsPending(false)
-            setErrors(null)
-        })
-        .catch(err => {
-            setIsPending(false)
-            setErrors(err.message)
-        })
-        }, 1000);
-    }, []) ; 
-    
+    const {data: blogs, isPending, error} = useFetch('http://localhost:8000')
+   
     return (
         <div className="mt-4">
             <h1 className="text-center text-2xl">
