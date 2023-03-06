@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
-import useFetch from "./useFetch";
+import useFetch from "./useFetch.jsx";
 
 export default function Home ()
 {
@@ -16,7 +16,7 @@ export default function Home ()
 
     const [name, setName] = useState('Abdias') ; 
 
-    const {data: blogs, isPending, error} = useFetch('http://localhost:8000')
+    const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs')
    
     return (
         <div className="mt-4">

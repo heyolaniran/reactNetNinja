@@ -6,7 +6,6 @@ export default function useFetch (url)
     const [error,setErrors] = useState(null)
     const [data, setData] = useState(null) 
 
-    return (
         useEffect(() => {
             setTimeout(() => {
                 fetch(url)
@@ -28,5 +27,9 @@ export default function useFetch (url)
             })
             }, 1000);
         }, [url]) 
-    )
+    
+
+    return {data , isPending, error} ;
+
+
 }
