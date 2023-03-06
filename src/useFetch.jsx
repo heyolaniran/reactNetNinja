@@ -7,8 +7,9 @@ export default function useFetch (url)
     const [data, setData] = useState(null) 
 
         useEffect(() => {
+            const abortCont = new AbortController() ; 
             setTimeout(() => {
-                fetch(url)
+                fetch(url, {signals : abortCont.signal})
                 .then((res) =>{
                     if(!res.ok)
                     {
@@ -22,10 +23,19 @@ export default function useFetch (url)
                 setErrors(null)
             })
             .catch(err => {
-                setIsPending(false)
-                setErrors(err.message)
+                if(err.name === 'AbortError')
+                {
+                    return () => console.log("zzz")
+                }else 
+                {
+                    setIsPending(false)
+                    setErrors(err.message)
+                }
+               
             })
             }, 1000);
+
+            return () => abortCont.abort()  ; 
         }, [url]) 
     
 
