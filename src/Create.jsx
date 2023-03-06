@@ -6,6 +6,13 @@ export default function Create() {
     const [author, setAuthor] = useState('Me')
     const [body , setBody] = useState('')
 
+    const handleSubmit = (e) => {
+        e.preventDefault() ; 
+
+        const blog = {title, body, author} ; 
+
+        console.log(blog) ; 
+    }
 
     return (
         <div className="create">
@@ -22,7 +29,7 @@ export default function Create() {
                 </div>
 
                 <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-                    <form action="" className="space-y-4">
+                    <form action="" className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label className="sr-only" htmlFor="title">Article Title</label>
                         <input
