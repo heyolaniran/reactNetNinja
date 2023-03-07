@@ -35,6 +35,12 @@
       "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate molestiae, rem dicta fugiat distinctio provident perspiciatis numquam voluptatibus aspernatur harum minus eius iure vitae eos vero inventore praesentium recusandae neque?",
       "author": "Me",
       "id": 6
+    },
+    {
+      "title": "Olaniran article 2",
+      "body": "lorem ipsum 2",
+      "author": "Me",
+      "id": 7
     }
   ]
 }
