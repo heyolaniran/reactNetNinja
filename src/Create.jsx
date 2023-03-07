@@ -5,13 +5,20 @@ export default function Create() {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('Me')
     const [body , setBody] = useState('')
-
+    const [isPending, setIsPending] = useState(false) ; 
     const handleSubmit = (e) => {
         e.preventDefault() ; 
 
         const blog = {title, body, author} ; 
+        setIsPending(true)
+        fetch('http://localhost:8000/blogs', {
+            method : 'POST', 
+            headers : {"Content-Type" :  "application/json"}, 
+            body: JSON.stringify(blog)
+        }).then(() => {
 
-        console.log(blog) ; 
+            setIsPending(false)
+        })
     }
 
     return (
@@ -72,12 +79,20 @@ export default function Create() {
                     </div>
 
                     <div className="mt-4">
-                        <button
+                        {!isPending &&  <button
                         type="submit"
-                        className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium justify-center text-white sm:w-auto"
+                        className="inline-block w-full rounded-lg bg-blue-500 px-5 py-3 font-medium justify-center text-white sm:w-auto"
                         >
                         Add Article
-                        </button>
+                        </button>}
+                        {isPending && <button
+                        type="submit"
+                        disabled
+                        className="inline-block w-full rounded-lg bg-gray-400 px-5 py-3 font-medium justify-center text-white sm:w-auto"
+                        >
+                        Adding new Article...
+                        </button>}
+                       
                     </div>
                     </form>
                 </div>

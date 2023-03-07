@@ -20,7 +20,7 @@ export default function BlogDetails () {
                         <h2 className="text-xl text-blue-500 px-2 text-center"> { blog.title } </h2>
                         <p className="mt-2 text-center"> { blog.author } </p>
 
-                        <span className="mt-4  flex justify-center"> { blog.body } </span>
+                        <span className="mt-4 text-center flex justify-center"> { blog.body } </span>
                     </article>
                 </div>
                
