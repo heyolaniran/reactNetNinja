@@ -1,9 +1,9 @@
 {
   "blogs": [
     {
-      "title": "my first blog",
-      "body": "Lorem ipsum ...",
-      "author": "Me",
+      "title": "",
+      "body": "",
+      "author": "",
       "id": 1
     },
     {

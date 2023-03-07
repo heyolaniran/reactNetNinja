@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import useFetch from "./useFetch";
 
 export default function BlogDetails () {
   const { id } = useParams() ; 
     const {data: blog, isPending, error} = useFetch('http://localhost:8000/blogs/' +id) ; 
-  
+    
     return (
         <div className="blog-details">
             {isPending && <div>Loading article details...</div> }
@@ -22,6 +22,10 @@ export default function BlogDetails () {
 
                         <span className="mt-4 text-center flex justify-center"> { blog.body } </span>
                     </article>
+
+                    <div className="justify-center flex">
+                        <Link to={`/edit/${id}`} className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium justify-center text-white sm:w-auto"> Editer </Link>
+                    </div>
                 </div>
                
             )
