@@ -33,7 +33,7 @@ export default function BlogEdit () {
         const blog  = {title  , author   , body  }
 
         console.log(blog)
-        /*setIsEditing(true)
+        setIsEditing(true)
         fetch('http://localhost:8000/blogs/'+id, {
             method: 'PUT', 
             headers: {"Content-Type" : "application/json"}, 
@@ -43,7 +43,7 @@ export default function BlogEdit () {
             setIsEditing(false)
             navigate("/blog/"+id) ; 
 
-        })*/
+        })
     } 
 
     return (
