@@ -5,6 +5,7 @@ import Create from "./Create" ;
 import {BrowserRouter as Router , Routes, Route } from 'react-router-dom'
 import BlogDetails from './BlogDetails';
 import BlogEdit from './BlogEdit' ; 
+import NotFoundPage from './NotFoundPage';
 function App() {
 
  
@@ -20,6 +21,7 @@ function App() {
             <Route path="/create" element={<Create />}></Route>
             <Route path="/blog/:id" element={<BlogDetails />}></Route>
             <Route path="/edit/:id" element={<BlogEdit />}></Route>
+            <Route path='*' element={<NotFoundPage />}></Route>
           </Routes>
         </div>
         
