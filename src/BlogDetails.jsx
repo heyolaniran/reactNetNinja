@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 export default function BlogDetails () {
   const { id } = useParams() ; 
     const {data: blog, isPending, error} = useFetch('http://localhost:8000/blogs/' +id) ; 
-    
+     console.log(blog)
     return (
         <div className="blog-details">
             {isPending && <div>Loading article details...</div> }

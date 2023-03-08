@@ -13,9 +13,9 @@
       "id": 2
     },
     {
-      "newTitle": "my third article",
-      "newBody": " lorem ipsum 3",
-      "newAuthor": "Abdias",
+      "title": "my third blog",
+      "body": " lorem ipsum 3",
+      "author": "Felicien",
       "id": 3
     },
     {

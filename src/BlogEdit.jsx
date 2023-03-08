@@ -1,33 +1,21 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import useFetch from "./useFetch";
 export default function BlogEdit () {
     
     const { id } = useParams() ; 
-    const [isPending, setIsPending] = useState(false)
-    const [error, setErrors] = useState()
-    const [title, setTitle] = useState()
-    const [author, setAuthor] = useState()
-    const [body , setBody] = useState()
+
+    const {data: article , isPending, error} = useFetch("http://localhost:8000/blogs/"+id) ; 
 
     const titleRef = useRef()
     const authorRef= useRef()
     const bodyRef = useRef() ; 
    
  
+    
  
 
-    useEffect(() => {
-        fetch(`http://localhost:8000/blogs/${ id }`)
-        .then((res) =>{ return res.json()})
-        .then((data) => {
-         setAuthor(data.author)
-         setBody(data.body)
-         setTitle(data.title)
-        })
-        .catch((err) => {
-            setErrors(err.message)
-        })
-    })
+   
     
  
 
@@ -39,12 +27,13 @@ export default function BlogEdit () {
     const handleEdit = (e) => {
         e.preventDefault() ; 
         
-        const newTitle = titleRef.current.value ; 
-        const newAuthor = authorRef.current.value
-        const newBody = bodyRef.current.value
-        const blog  = {newTitle, newBody , newAuthor }
+        const title = titleRef.current.value ; 
+        const author = authorRef.current.value
+        const body = bodyRef.current.value
+        const blog  = {title  , author   , body  }
 
-        setIsEditing(true)
+        console.log(blog)
+        /*setIsEditing(true)
         fetch('http://localhost:8000/blogs/'+id, {
             method: 'PUT', 
             headers: {"Content-Type" : "application/json"}, 
@@ -54,7 +43,7 @@ export default function BlogEdit () {
             setIsEditing(false)
             navigate("/blog/"+id) ; 
 
-        })
+        })*/
     } 
 
     return (
@@ -72,8 +61,8 @@ export default function BlogEdit () {
                     </div>
 
                     <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-                      
-                            <form action="" className="space-y-4" onSubmit={handleEdit}>
+                            {article && (
+                                <form action="" className="space-y-4" onSubmit={handleEdit}>
                                 <div>
                                     <label className="sr-only" htmlFor="title">Article Title</label>
                                     <input
@@ -81,8 +70,8 @@ export default function BlogEdit () {
                                     placeholder="Title"
                                     type="text"
                                     ref={titleRef}
-                                    defaultValue={title}
-                                    onChange= {(e) => setTitle(e.target.value)}
+                                    defaultValue={article.title}
+                                    
                                     />
                                 </div>
 
@@ -94,8 +83,8 @@ export default function BlogEdit () {
                                     type="text"
                                     required
                                     ref={authorRef}
-                                    defaultValue={author}
-                                    onChange= {(e) => setAuthor(e.target.value)}
+                                    defaultValue={article.author}
+                                    
                                     />
                                 </div>
 
@@ -108,8 +97,8 @@ export default function BlogEdit () {
                                     rows="8"
                                     required
                                     ref={bodyRef}
-                                    defaultValue={body}
-                                    onChange= {(e) => setBody(e.target.value)}
+                                    defaultValue={article.body}
+                                  
                                     ></textarea>
                                 </div>
 
@@ -130,6 +119,8 @@ export default function BlogEdit () {
                                 
                                 </div>
                             </form>
+                            )}
+                            
                         
                         
                     </div>
