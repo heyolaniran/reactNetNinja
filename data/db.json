@@ -1,9 +1,9 @@
 {
   "blogs": [
     {
-      "title": "",
-      "body": "",
-      "author": "",
+      "title": "my first blog",
+      "body": "my first blog",
+      "author": "Me",
       "id": 1
     },
     {
@@ -11,12 +11,6 @@
       "body": " lorem ipsum 2",
       "author": "Me",
       "id": 2
-    },
-    {
-      "title": "my third blog",
-      "body": " lorem ipsum 3",
-      "author": "Felicien",
-      "id": 3
     },
     {
       "title": "my fourth blog",
