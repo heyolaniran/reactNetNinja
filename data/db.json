@@ -13,9 +13,9 @@
       "id": 2
     },
     {
-      "title": "my third blog",
-      "body": " lorem ipsum 3",
-      "author": "Abdias",
+      "newTitle": "my third article",
+      "newBody": " lorem ipsum 3",
+      "newAuthor": "Abdias",
       "id": 3
     },
     {
@@ -25,9 +25,9 @@
       "id": 4
     },
     {
-      "title": "my fifth blog",
-      "body": " lorem ipsum 5",
-      "author": "Olaniran",
+      "newTitle": "my fifth blog klfgkgfl",
+      "newBody": " lorem ipsum 5",
+      "newAuthor": "Olaniran flfdkfdl",
       "id": 5
     },
     {

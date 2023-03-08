@@ -1,16 +1,36 @@
 import { useParams, useNavigate } from "react-router-dom";
-import useFetch from "./useFetch";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 export default function BlogEdit () {
-    const { id } = useParams() ; 
-    const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
-    const [body , setBody] = useState('')
-    const {data: article, isPending, error} = useFetch(`http://localhost:8000/blogs/${ id }`) ; 
-
-
-  
     
+    const { id } = useParams() ; 
+    const [isPending, setIsPending] = useState(false)
+    const [error, setErrors] = useState()
+    const [title, setTitle] = useState()
+    const [author, setAuthor] = useState()
+    const [body , setBody] = useState()
+
+    const titleRef = useRef()
+    const authorRef= useRef()
+    const bodyRef = useRef() ; 
+   
+ 
+ 
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/blogs/${ id }`)
+        .then((res) =>{ return res.json()})
+        .then((data) => {
+         setAuthor(data.author)
+         setBody(data.body)
+         setTitle(data.title)
+        })
+        .catch((err) => {
+            setErrors(err.message)
+        })
+    })
+    
+ 
+
 
   
     const navigate = useNavigate() ; 
@@ -18,7 +38,12 @@ export default function BlogEdit () {
 
     const handleEdit = (e) => {
         e.preventDefault() ; 
-        const blog = { title, body, author } ; 
+        
+        const newTitle = titleRef.current.value ; 
+        const newAuthor = authorRef.current.value
+        const newBody = bodyRef.current.value
+        const blog  = {newTitle, newBody , newAuthor }
+
         setIsEditing(true)
         fetch('http://localhost:8000/blogs/'+id, {
             method: 'PUT', 
@@ -47,7 +72,7 @@ export default function BlogEdit () {
                     </div>
 
                     <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-                        {article && (
+                      
                             <form action="" className="space-y-4" onSubmit={handleEdit}>
                                 <div>
                                     <label className="sr-only" htmlFor="title">Article Title</label>
@@ -55,9 +80,8 @@ export default function BlogEdit () {
                                     className="w-full rounded-lg border-gray-200 p-3 text-sm"
                                     placeholder="Title"
                                     type="text"
-                                    required
-                                    
-                                    value={title}
+                                    ref={titleRef}
+                                    defaultValue={title}
                                     onChange= {(e) => setTitle(e.target.value)}
                                     />
                                 </div>
@@ -69,7 +93,8 @@ export default function BlogEdit () {
                                     placeholder="Author"
                                     type="text"
                                     required
-                                    value={article.author}
+                                    ref={authorRef}
+                                    defaultValue={author}
                                     onChange= {(e) => setAuthor(e.target.value)}
                                     />
                                 </div>
@@ -82,7 +107,8 @@ export default function BlogEdit () {
                                     placeholder="Message"
                                     rows="8"
                                     required
-                                    value={article.body}
+                                    ref={bodyRef}
+                                    defaultValue={body}
                                     onChange= {(e) => setBody(e.target.value)}
                                     ></textarea>
                                 </div>
@@ -104,7 +130,7 @@ export default function BlogEdit () {
                                 
                                 </div>
                             </form>
-                        )}
+                        
                         
                     </div>
                     </div>
